@@ -18,11 +18,11 @@ export class AuthService {
     firebase.auth()
     .createUserWithEmailAndPassword(email, password)
       .then((data) => {
-        this.toastr.success('Signed Up', 'Success');
+        this.toastr.success('Успешно се регистрирахте в приложението!', 'Добре дошли!');
         this.router.navigate(['/auth/signin']);
       })
       .catch((err) => {
-        this.toastr.error(err.message, 'Warning');
+        this.toastr.error('Има грешка в попълнените данни', 'Внимание!');
       });
   }
 
@@ -38,10 +38,10 @@ export class AuthService {
           })
 
           this.router.navigate(['/recipes/start']);
-          this.toastr.success('Logged In', 'Success');
+          this.toastr.success('Успешно влязохте в системата', 'Добре дошли!');
       })
       .catch((err) => {
-        this.toastr.error(err.message, 'Warning');
+        this.toastr.error('Има грешка в попълнените данни', 'Внимание!');
       });
   }
 

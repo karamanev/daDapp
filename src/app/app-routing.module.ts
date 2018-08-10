@@ -1,21 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
-import { SigninComponent } from './auth/signin/signin.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { AuthGuard } from './auth/auth.guard';
-import { NewsModule } from './news/news.module';
+import { HomeComponent} from './components/common/home/home.component'
+import { SigninComponent } from './components/auth/signin/signin.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
+import { NewsModule } from './components/news/news.module';
+import { AuthGuard } from './components/auth/auth.guard';
 
 const routes : Route[] = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+
   { path: 'auth', children: [
     { path: 'signin', component: SigninComponent },
     { path: 'signup', component: SignupComponent },
   ]  },
   { path: 'news', 
-   loadChildren: () => NewsModule ,
-   canActivate: [AuthGuard] 
+   loadChildren: () => NewsModule  
   }, 
   {
-    path: '**', redirectTo: '/auth/signin'
+    path: '**', redirectTo: '/news/all'
   }
 ]
 

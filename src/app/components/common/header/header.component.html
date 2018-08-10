@@ -1,0 +1,43 @@
+<div class="bs-component">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"><img src="../../assets/logo.jpg" id="logoImg"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Начало <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"  routerLink="/news/all">Всички новини</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  routerLink="/news/categories">Категории</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  routerLink="/news/best">Най-четени</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  routerLink="/auth/signup" *ngIf="!authService.isAuthenticated()">Регистрация</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" routerLink="/auth/signin" *ngIf="!authService.isAuthenticated()">Вход</a>
+            </li>
+            
+        <li class="nav-item">
+          <a class="nav-link"  routerLink="/news/add" *ngIf="authService.isAuthenticated()">Публикувай!</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="logout()" *ngIf="authService.isAuthenticated()">Изход</a>
+          </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Търсене">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Търси</button>
+      </form>
+    </div>
+  </nav>
+<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div></div>

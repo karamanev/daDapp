@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="bs-docs-section">
+    <div class="row">
+      <div class="col-lg-4">
+        <div *ngFor="let new of news | async" class="bs-component">
+          <div class="card mb-3">
+            <h3 class="card-header">{{new.category}}</h3>
+            <div class="card-body">
+              <h5 class="card-title">{{new.title}}</h5>
+              <h6 class="card-subtitle text-muted">{{new.publisher}}</h6>
+            </div>
+            <img style="height: 200px; width: 100%; display: block;" src="{{new.imageUrl}}" alt="{{new.title}}">
+            <div class="card-body">
+              <a routerLink="/news/details/{{new.id}}" class="card-link">Read more</a>
+            </div>
+            <div class="card-footer text-muted">
+              {{new.date}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

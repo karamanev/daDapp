@@ -1,8 +1,10 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <form #f="ngForm" (ngSubmit)="login(f)">
+          <fieldset>
+              <legend>Вход</legend>
         <div class="form-group">
-          <label for="email">Mail</label>
+          <label for="email">Имейл адрес</label>
           <input 
           required
           type="email" 
@@ -12,7 +14,7 @@
           class="form-control">
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password">Парола</label>
           <input
             required
             type="password"
@@ -21,9 +23,12 @@
             ngModel
             class="form-control">
         </div>
-        <button class="btn btn-primary" [disabled]="f.invalid" type="submit">Sign In</button>
+        <button class="btn btn-primary" [disabled]="f.invalid" type="submit">Влез</button>
+      </fieldset>
       </form>
     </div>
+
   </div>
   
+  <img src="../../assets/logo2.jpg" id="logoImg2">
   

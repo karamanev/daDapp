@@ -9,7 +9,7 @@ import { NewsAdminComponent } from './news-admin/news-admin.component'
 import { AuthGuard } from '../auth/auth.guard';
 
 const routes : Route[] = [
-    { path: '', pathMatch: 'full', component: AllNewsComponent, canActivate: [ AuthGuard ] },
+    { path: 'all', component: AllNewsComponent },
     { path: 'create', component: CreateNewsComponent, canActivate: [ AuthGuard ] },
     { path: 'details/:id', component: SingleNewsComponent },
     { path: 'categories/:id', component: NewsCategoriesComponent },

@@ -7,16 +7,18 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './components/common/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { AuthModule } from './auth/auth.module';
-import { NewsModule } from './news/news.module';
+import { AuthModule } from './components/auth/auth.module';
+import { NewsModule } from './components/news/news.module';
+import { HomeComponent } from './components/common/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

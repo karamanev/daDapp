@@ -1,0 +1,22 @@
+<div class="bs-component">
+
+  <li class="item">
+    <a class="link" routerLink="/news/all">Всички новини</a>
+  </li>
+  <li class="item">
+    <a class="link" routerLink="/news/categories">Категории</a>
+  </li>
+  <li class="item">
+    <a class="link" routerLink="/news/best">Най-четени</a>
+  </li>
+  <li class="item">
+    <a class="link" routerLink="/auth/signup" *ngIf="!authService.isAuthenticated()">Регистрация</a>
+  </li>
+  <li class="item">
+    <a class="link" routerLink="/auth/signin" *ngIf="!authService.isAuthenticated()">Вход</a>
+  </li>
+
+  <li class="item">
+    <a class="link" routerLink="/news/add" *ngIf="authService.isAuthenticated()">Публикувай!</a>
+  </li>
+</div>
