@@ -1,0 +1,12 @@
+.lead{
+    display: inline;
+    margin-right: 40px
+}
+
+.move{
+    margin-top: 20px
+}
+
+.jumbotron{
+    max-width: 800px;
+}

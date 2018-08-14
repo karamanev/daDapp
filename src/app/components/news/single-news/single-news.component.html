@@ -1,3 +1,19 @@
-<p>
-  single-news works!
-</p>
+<div class="jumbotron" *ngIf="news">
+    <h1 class="display-3">{{news.title}}</h1>
+    <img
+    src="{{news.imageUrl}}"
+    alt="{{news.name}}"
+    class="img-responsive"
+    style="max-height: 300px;">
+    <br>
+    <p class="lead">{{news.category}}   {{news.publisher}}  {{news.rating}}</p>
+    <hr class="my-4">
+    <p>{{news.summary}}</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" style="cursor: pointer;" routerLink="/news/edit/{{id}}">Промени</a>
+      </p>
+
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" style="cursor: pointer;" (click)="delete()">Изтрий</a>
+      </p>
+  </div>

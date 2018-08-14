@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NewsList } from '../models/news-list.model';
-import { NewsService } from '../news.service';
+import { NewsList } from '../../../core/models/news-list.model';
+import { NewsService } from '../../../core/services/news.service';
 
 @Component({
   selector: 'app-all-news',
@@ -11,6 +11,8 @@ import { NewsService } from '../news.service';
 export class AllNewsComponent implements OnInit {
 
   news : Observable<NewsList[]>
+  pageSize: number = 6
+  currentPage: number = 1
 
   constructor(
     private newsService : NewsService
@@ -21,5 +23,8 @@ export class AllNewsComponent implements OnInit {
      .getAllNews();
   }
 
+  changePage(page){
+    this.currentPage = page
+  }
 
 }

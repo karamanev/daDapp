@@ -7,7 +7,10 @@ import { CreateNewsComponent } from './create-news/create-news.component';
 import { SingleNewsComponent } from './single-news/single-news.component'
 import { NewsCategoriesComponent } from './news-categories/news-categories.component';
 import { NewsAdminComponent } from './news-admin/news-admin.component'
-import { NewsRoutingModule } from './news-routing.module'
+import { NewsRoutingModule } from './news-routing.module';
+import { EditNewsComponent } from './edit-news/edit-news.component'
+import { NgxPaginationModule } from 'ngx-pagination';
+import { BlockchainComponent } from './blockchain/blockchain.component'
 
 @NgModule({
     declarations: [
@@ -15,12 +18,16 @@ import { NewsRoutingModule } from './news-routing.module'
         CreateNewsComponent,
         SingleNewsComponent,
         NewsCategoriesComponent,
-        NewsAdminComponent
+        NewsAdminComponent,
+        EditNewsComponent,
+        BlockchainComponent
     ],
     imports: [
         CommonModule,
         FormsModule,
-        NewsRoutingModule
+        NewsRoutingModule,
+        NgxPaginationModule
+
     ]
 })
 export class NewsModule { }

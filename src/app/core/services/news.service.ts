@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { NewsList } from './models/news-list.model';
-import { NewsCreate } from './models/news-create.model';
-//import { blockchainExplorer } from '../news/blockchain api/contractExplorer'
+import { NewsList } from '../models/news-list.model';
+import { NewsCreate } from '../models/news-create.model';
+//import { blockchainExplorer } from '../blockchain api/contractExplorer'
 
 const baseUrl = 'https://testproj-2089a.firebaseio.com/news/'
 
@@ -13,7 +13,7 @@ const baseUrl = 'https://testproj-2089a.firebaseio.com/news/'
 export class NewsService {
   constructor(
     private http : HttpClient,
-  //  private explorer: blockchainExplorer
+//    private explorer: blockchainExplorer
   ) {  }
 
   getAllNews() {
@@ -24,16 +24,17 @@ export class NewsService {
         for (const i of ids) {
           news.push(new NewsList(i, res[i].title, res[i].summary, res[i].category, res[i].publisher, res[i].rating, res[i].imageUrl));
         }
-
         return news;
       }));
   }
+  
 
   /*
   getAllNewsFromBlockchain(){
     return this.explorer.showNews()
   }
-  */
+  
+*/
 
   createNews(body : NewsCreate) {
     return this.http.post(`${baseUrl}.json`, body);
@@ -41,5 +42,13 @@ export class NewsService {
 
   getById(newsId : string) {
     return this.http.get<NewsList>(`${baseUrl}${newsId}/.json`);
+  }
+
+  editNews(body) {
+    return this.http.patch(`${baseUrl}.json`, body);
+  }
+
+  deleteNews(newsId : string) {
+    return this.http.delete(`${baseUrl}${newsId}/.json`);
   }
 }

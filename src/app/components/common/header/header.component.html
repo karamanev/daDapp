@@ -1,5 +1,7 @@
+<div class="container">
 <div class="bs-component">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <div class="container">
     <a class="navbar-brand" href="#"><img src="../../assets/logo.jpg" id="logoImg"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,6 +11,10 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" routerLink="/">Начало <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"  routerLink="/news/block">!!!!!!</a>
         </li>
 
         <li class="nav-item">
@@ -28,9 +34,9 @@
             </li>
             
         <li class="nav-item">
-          <a class="nav-link"  routerLink="/news/add" *ngIf="authService.isAuthenticated()">Публикувай!</a>
+          <a class="nav-link"  routerLink="/news/create" *ngIf="authService.isAuthenticated()">Публикувай!</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" style="cursor: pointer;" >
             <a class="nav-link" (click)="logout()" *ngIf="authService.isAuthenticated()">Изход</a>
           </li>
       </ul>
@@ -39,5 +45,7 @@
         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Търси</button>
       </form>
     </div>
+  </div>
   </nav>
 <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div></div>
+</div>

@@ -1,10 +1,6 @@
 <div class="bs-docs-section">
   <div class="row">
-    <div *ngFor="let new of news | async | paginate: {
-      id: 'allNews',
-      itemsPerPage: pageSize,
-      currentPage: currentPage
-  }" class="col-lg-4">
+    <div *ngFor="let new of news | async" class="col-lg-4">
       <div class="bs-component"></div>
       <div class="card mb-3">
         <h3 class="card-header">{{new.category}}</h3>
@@ -22,17 +18,5 @@
       </div>
     </div>
   </div>
-  <pagination-controls 
-    id="allNews"
-    (pageChange)="changePage($event)"
-    maxSize="9"
-    directionLinks="true"
-    autoHide="true"
-    previousLabel="Предишна"
-    nextLabel="Следваща"
-    screenReaderPaginationLabel="Pagination"
-    screenReaderPageLabel="страница"
-    screenReaderCurrentLabel="Вие сте на страница"> 
-  </pagination-controls>
 </div>
 
