@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as ethers from '../../../../node_modules/ethers'
 import { HttpClient } from '@angular/common/http'
-let tokenAbi = require('./abi.js');
+import { tokenAbi } from './abi.js'
 
 let window: any;
 

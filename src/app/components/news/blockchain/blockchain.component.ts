@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from '../../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 import { blockchainExplorer } from '../../../core/blockchain api/contractExplorer';
 import { blockchainNews } from '../../../core/models/blockchainNews.model';
 

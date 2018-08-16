@@ -28,6 +28,23 @@
       </form>
     </div>
 
+
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form #fo="ngForm" (ngSubmit)="adminService.googleLogin()">
+          <fieldset>
+              <legend>Вход с вашия google профил.</legend>
+              <button color="primary">
+            </button>
+
+        <button class="btn btn-primary" [disabled]="fo.invalid" type="submit">Влез</button>
+      </fieldset>
+      </form>
+    </div>
+
+
+
+
+
   </div>
   
   <img src="../../assets/logo2.jpg" id="logoImg2">

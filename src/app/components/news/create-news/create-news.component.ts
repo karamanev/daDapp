@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsCreate } from '../../../core/models/news-create.model';
 import { NewsService } from '../../../core/services/news.service';
-import { ToastrService } from '../../../../../node_modules/ngx-toastr';
-import { Router } from '../../../../../node_modules/@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-news',

@@ -4,7 +4,7 @@ import { HomeComponent} from './components/common/home/home.component'
 import { SigninComponent } from './components/auth/signin/signin.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { NewsModule } from './components/news/news.module';
-import { AuthGuard } from './components/auth/auth.guard';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes : Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

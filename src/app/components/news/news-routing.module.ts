@@ -7,7 +7,7 @@ import { NewsCategoriesComponent } from './news-categories/news-categories.compo
 import { NewsAdminComponent } from './news-admin/news-admin.component'
 import { EditNewsComponent } from './edit-news/edit-news.component';
 
-import { AuthGuard } from '../auth/auth.guard';
+import { AuthGuard } from '../../core/guards/auth.guard';
 import { BlockchainComponent } from './blockchain/blockchain.component';
 
 const routes : Route[] = [

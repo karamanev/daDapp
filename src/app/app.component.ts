@@ -9,12 +9,18 @@ import * as firebase from 'firebase';
 export class AppComponent implements OnInit{
   title = 'app';
 
-  ngOnInit(): void {
+  ngOnInit(){
+
+  }
+
+
+}
+
+/*
+: void {
     firebase.initializeApp({
       apiKey: "AIzaSyBminGPu-zeb7j5z2aZPVlR20ZMUqkWV1s",
       authDomain: "testproj-2089a.firebaseapp.com"
     })
   }
-
-
-}
+*/
