@@ -5,6 +5,7 @@ import { CanActivate,
   Router 
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../services/auth.service';
 
 
@@ -14,7 +15,8 @@ import { AuthService } from '../services/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(
     private authService : AuthService,
-    private router : Router
+    private router : Router,
+    private toastr: ToastrService
   ) {
     
   }
@@ -23,12 +25,12 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     return this.check();
   }
-
+  
   check() : boolean {
     if (this.authService.isAuthenticated()) {
       return true;
     }
-
+    this.toastr.error('Влезте в своя профил, за да публикувате новини', 'Грешка!');
     this.router.navigate(['/auth/signin']);
     return false;
   }

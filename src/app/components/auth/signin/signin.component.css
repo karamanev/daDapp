@@ -3,3 +3,15 @@
     margin-top: 20px;
     margin-left: 250px
 }
+
+#google{
+    margin: 0;
+    padding: -20px;
+    background-color:#2b3e50;
+    margin-top: 20px;
+    border: none;
+    background: none;
+    position: absolute;
+    left: 5px;
+    top: -5px;
+}

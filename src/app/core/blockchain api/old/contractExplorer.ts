@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import * as ethers from '../../../../node_modules/ethers'
+import * as ethers from '../../../../../node_modules/ethers'
 import { HttpClient } from '@angular/common/http'
-import {contractInfo} from './contractInfo'
+import { tokenAbi } from './abi.js'
 
 let window: any;
 
@@ -13,146 +13,12 @@ export class blockchainExplorer {
     provider: null
     contractAddress: string
     contractABI: any
-    newsContract: any
 
     constructor() {
         this.provider = ethers.providers.getDefaultProvider('ropsten')
-        this.contractAddress = contractInfo.prototype.getContractAddress()
-        this.contractABI = contractInfo.prototype.getContractABI()
-        this.newsContract = new ethers.Contract(this.contractAddress, this.contractABI, this.provider)
+        this.contractAddress = "0xaC6F637fe62d44Df270f2A465827229944b67242"
+        this.contractABI = tokenAbi
     }
-
-    async showNews() {
-        try {
-            let news = []
-            let categoriesCount = Number(await this.newsContract.getNumberOfCategories())
-            for (let index = 0; index < categoriesCount; index++) {
-                let currentCategoryName = "";
-                currentCategoryName = await this.newsContract.getCategoryName(index)
-                let newsInCurrentCategory = Number(await this.newsContract.getNumberOfNewsInType(currentCategoryName))
-    
-                for (let newsIndex = 0; newsIndex < newsInCurrentCategory; newsIndex++) {
-                    let result = {
-                        title: String,
-                        category: String,
-                        hashed: String,
-                        rating: Number
-                    }
-                        result = await this.newsContract.getNews(currentCategoryName, newsIndex)
-                    let currentNews = {
-                        title: result.title,
-                        category: currentCategoryName,
-                        hashed: result.hashed,
-                        rating: Number(result.rating)
-                    }
-                    news.push(currentNews)
-                }
-            }
-            return news
-        }
-    
-        catch (err) {
-            console.log(err)
-        }
-    
-    }
-    
-    async addCurrentNews(title, category, hashed) {
-        let privateKey = '0xf91c7e6f1e5a32ee9c8cfbd0b050f39e249d4effd19942537c04d34b78821b75'
-        try {
-            let wallet = await new ethers.Wallet(privateKey, this.provider);
-            let newsContract = await new ethers.Contract(this.contractAddress, this.contractABI, wallet)
-            await newsContract.addNews(title, category, hashed)
-            return
-        }
-        catch (err) {
-            console.log(err)
-        }
-    }
-    
-    async showNewsFromCategory(categoryName) {
-        try {
-            let news = []
-            let newsInCategoryCount = Number(await this.newsContract.getNumberOfNewsInType(categoryName))
-            for (let index = 0; index < newsInCategoryCount; index++) {
-                let result = {
-                    title: String,
-                    category: String,
-                    hashed: String,
-                    rating: Number
-                }
-                result = await this.newsContract.getNews(categoryName, index)
-                let currentNews = {
-                    title: result.title,
-                    category: categoryName,
-                    hashed: result.hashed,
-                    rating: Number(result.rating)
-                }
-                news.push(currentNews)
-            }
-            return news
-        }
-    
-        catch (err) {
-            console.log(err)
-        }
-    }
-    
-    async showCategories() {
-      try {
-            let categories = []
-            let categoriesCount = Number(await this.newsContract.getNumberOfCategories())
-            for (let index = 0; index < categoriesCount; index++) {
-                let currentCategoryName = "";
-                currentCategoryName = await this.newsContract.getCategoryName(index)
-                categories.push(currentCategoryName)
-            }
-          console.log(categoriesCount)
-            return categories
-        }
-    
-        catch (err) {
-            console.log(err)
-        }
-    }
-    
-    async ratePlus(category, index, voter) {
-        let wallet = "0x0c9276e4899bf32557fd96ab06a6f85042fac2d0"
-        try {
-            await this.newsContract.plusRating(category, index, wallet)
-        }
-        catch (err) {
-            console.log(err)
-        }
-    }
-    
-    async rateMinus(category, index, voter) {
-        let wallet = "0x0c9276e4899bF32557fd96AB06a6F85042faC2d0"
-        try {
-            await this.newsContract.minusRating(category, index, wallet)
-        }
-    
-        catch (err) {
-            console.log(err)
-        }
-    }
-  
-}
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-
 
     async showNews() {
         return new Promise((resolve, reject) => {
@@ -165,7 +31,7 @@ export class blockchainExplorer {
             }
             let news = []
 
-            let contract = 
+            let contract = new ethers.Contract(this.contractAddress, this.contractABI, this.provider)
             
             let categoriesCount = contract.getNumberOfCategories()
             console.log(categoriesCount)
@@ -195,6 +61,8 @@ export class blockchainExplorer {
 
     }
 
+
+    /*
 
 
         addCurrentNews(title, summary, category, publisher, rating, imageUrl) {
@@ -272,3 +140,5 @@ export class blockchainExplorer {
             console.log(err)
         }
     }*/
+
+}

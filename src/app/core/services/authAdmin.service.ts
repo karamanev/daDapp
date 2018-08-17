@@ -30,6 +30,11 @@ export class AuthAdminService {
         }));
     }
 
+    googleLogin() {
+        const provider = new auth.GoogleAuthProvider();
+        return this.oAuthLogin(provider);
+    }
+
 
     oAuthLogin(provider) {
         return this.afAuth.auth.signInWithPopup(provider).then((credential) => {
@@ -51,15 +56,6 @@ export class AuthAdminService {
         return userRef.set(data, { merge: true });
     }
 
-    private googleLogin() {
-        const provider = new auth.GoogleAuthProvider();
-        return this.oAuthLogin(provider);
-    }
-    
 
-    googleSignOut() {
-        this.afAuth.auth.signOut().then(() => {
-            this.router.navigate(['/']);
-        });
-    }
+    
 }
