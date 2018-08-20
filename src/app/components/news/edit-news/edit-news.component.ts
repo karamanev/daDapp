@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsCreate } from '../../../core/models/news-create.model';
-import { NewsService } from '../../../core/services/news.service';
+import { NewsService } from '../../../core/services/news-list.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 

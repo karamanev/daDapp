@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { blockchainExplorer } from '../../../core/blockchain api/contractExplorer';
-import { blockchainNews } from '../../../core/models/blockchainNews.model';
-
-import { NewsList } from '../../../core/models/news-list.model';
+import { blockchainNews } from '../../../core/models/blockchain-create.model';
 
 @Component({
   selector: 'app-blockchain',
@@ -18,11 +16,7 @@ export class BlockchainComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-     this.news = this.explorer.showNews()
-     .then(res => console.log(res))
-     .catch(err => console.log(err));
-
-     console.log(this.news)
+     this.news = this.explorer.showNews()    
     }
 
 }

@@ -6,6 +6,6 @@ export class NewsList {
     public category: string,
     public publisher: string,
     public rating: number,
-    public imageUrl: string
+    public imageUrl: string,
   ) { }
 }

@@ -3,6 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { NewsList } from '../models/news-list.model';
 import { NewsCreate } from '../models/news-create.model';
+
+
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { blockchainExplorer } from '../blockchain api/contractExplorer';
+import { blockchainNews } from '../models/blockchain-create.model';
 //import { blockchainExplorer } from '../blockchain api/contractExplorer'
 
 const baseUrl = 'https://testproj-2089a.firebaseio.com/news/'
@@ -13,7 +19,7 @@ const baseUrl = 'https://testproj-2089a.firebaseio.com/news/'
 export class NewsService {
   constructor(
     private http : HttpClient,
-//    private explorer: blockchainExplorer
+    private explorer: blockchainExplorer
   ) {  }
 
   getAllNews() {
@@ -28,15 +34,8 @@ export class NewsService {
       }));
   }
   
-
-  /*
-  getAllNewsFromBlockchain(){
-    return this.explorer.showNews()
-  }
-  
-*/
-
   createNews(body : NewsCreate) {
+    
     return this.http.post(`${baseUrl}.json`, body);
   }
 

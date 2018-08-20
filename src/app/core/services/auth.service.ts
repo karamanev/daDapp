@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { auth } from 'firebase/app';
+import { auth } from 'firebase';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -45,6 +45,7 @@ export class AuthService {
           .then((token: string) => {
             this.token = token;
           })
+        sessionStorage.setItem('name', email)
         this.updateUserData(data.user);
         this.router.navigate(['/recipes/start']);
         this.toastr.success('Успешно влязохте в системата', 'Добре дошли!');
@@ -79,7 +80,7 @@ export class AuthService {
     const data: User = {
       uid: user.uid,
       email: user.email,
-      roles: { reader: true }
+      roles: { reader: true, banned: false }
     };
 
     return userRef.set(data, { merge: true });
@@ -109,6 +110,9 @@ export class AuthService {
   isAuthenticated(): boolean {
     return this.token != null;
   }
+
+
+  
 
   signUp(email: string, password: string) {
     this.afAuth.auth

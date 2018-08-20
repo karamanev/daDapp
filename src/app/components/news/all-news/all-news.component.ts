@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NewsList } from '../../../core/models/news-list.model';
-import { NewsService } from '../../../core/services/news.service';
+import { NewsService } from '../../../core/services/news-list.service';
 
 @Component({
   selector: 'app-all-news',

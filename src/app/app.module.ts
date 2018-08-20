@@ -7,7 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFirestore } from '../../node_modules/angularfire2/firestore';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/common/header/header.component';

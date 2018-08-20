@@ -1,5 +1,6 @@
 export interface Roles {
   reader: boolean;
+  banned: boolean;
   admin?:  boolean;
 }
 

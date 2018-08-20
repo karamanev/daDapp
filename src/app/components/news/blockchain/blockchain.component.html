@@ -6,14 +6,11 @@
         <h3 class="card-header">{{new.category}}</h3>
         <div class="card-body">
           <h5 class="card-title">{{new.title}}</h5>
-          <h6 class="card-subtitle text-muted">{{new.publisher}}</h6>
+          <h6 class="card-subtitle text-muted">Код за сигурност: {{new.hashed}}</h6>
         </div>
-        <img style="height: 200px; width: 100%; display: block;" src="{{new.imageUrl}}" alt="{{new.title}}">
+
         <div class="card-body">
-          <a routerLink="/news/details/{{new.id}}" class="card-link">Четете повече тук.</a>
-        </div>
-        <div class="card-footer text-muted">
-          {{new.date}}
+          <h3 class="card-header">Рейтинг: {{new.rating}}</h3>
         </div>
       </div>
     </div>
