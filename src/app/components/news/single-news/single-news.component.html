@@ -1,19 +1,61 @@
 <div class="jumbotron" *ngIf="news">
-    <h1 class="display-3">{{news.title}}</h1>
+    <p class="header">Рубрика: <strong>{{news.category}}</strong> </p>
+      <div *ngIf="isLogged">
+      <span class="rates">Оцени новината:</span>
+        <a class="btn btn-primary btn-lg rate"  routerLink="/block/rateplus/{{news.title}}"><strong>+</strong></a>
+        <a class="btn btn-primary btn-lg rate" routerLink="/block/rateminus/{{news.title}}"><strong>-</strong></a>
+      </div>
+             
+  
+    <hr class="my-4">
+  <h1 class="display-3">{{news.title}}</h1>
     <img
     src="{{news.imageUrl}}"
     alt="{{news.name}}"
     class="img-responsive"
     style="max-height: 300px;">
     <br>
-    <p class="lead">{{news.category}}   {{news.publisher}}  {{news.rating}}</p>
+    <br>
+
+    <p class="lead">{{news.publisher}}</p>
     <hr class="my-4">
     <p>{{news.summary}}</p>
-    <p class="lead">
-      <a class="btn btn-primary btn-lg" style="cursor: pointer;" routerLink="/news/edit/{{id}}">Промени</a>
-      </p>
+    <br>
+    <br>
+    <hr class="my-4">
+
+
+      <h2>Блокчейн проверка</h2>
+        <div class="bs-component" *ngIf="showButton" (click)="showBlockChainStatus()"  style="cursor: pointer;">
+          <div class="alert alert-warning">
+          <img src="../../assets/logo2.jpg" class="check-logo">
+          <h4 class="alert-heading" >Проверете новината за съответствие с блокчейн мрежата.</h4>
+          </div>
+        </div>
+
+        <div class="bs-component" *ngIf="showTrue">
+          <div class="alert alert-warning">
+            <img src="../../assets/logo_green.jpg" class="check-logo">
+            <h4 class="alert-heading" style="color: #3ede1a;">Новината е проверена от блокчейна!</h4>
+          </div>
+        </div>
+
+          
+        <div class="bs-component" *ngIf="showFake">
+            <div class="alert alert-warning">
+              <img src="../../assets/logo_red.jpg" class="check-logo">
+              <h4 class="alert-heading"style="color: #f80009;">Намерено е несъответствие!</h4>
+            </div>
+        </div>
+
+
+    <hr class="my-4">
 
     <p class="lead">
-        <a class="btn btn-primary btn-lg" style="cursor: pointer;" (click)="delete()">Изтрий</a>
+      <a class="btn btn-primary btn-lg" style="cursor: pointer;" *ngIf="isAuthorOrAdmin" routerLink="/news/edit/{{id}}">Промени</a>
+      </p>
+
+    <p class="lead"  >
+        <a class="btn btn-primary btn-lg" style="cursor: pointer;" *ngIf="isAdmin" (click)="delete()">Изтрий</a>
       </p>
   </div>

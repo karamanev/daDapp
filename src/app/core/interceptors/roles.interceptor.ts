@@ -12,7 +12,7 @@ import * as _ from 'lodash'
 
 @Injectable()
 export class RolesInterceptor implements HttpInterceptor {
-  userRoles: Array<String>
+  userRoles: Array<string>
   constructor(
     private authService: AuthService
   ) { }
@@ -23,12 +23,25 @@ export class RolesInterceptor implements HttpInterceptor {
     const token = this.authService.getToken();
     if (token) {
       this.authService.user.pipe(map(user => {
-        console.log(this.userRoles = _.keys(_.get(user, 'roles')))
-        return this.userRoles = _.keys(_.get(user, 'roles'))
-      }))
-        .subscribe()
+        this.userRoles = _.keys(_.get(user, 'roles'))
+        this.userRoles = this.userRoles.filter(Boolean)
+
+        for (let rol of this.userRoles) {
+         
+          if (this.userRoles[rol] === true)
+          console.log(this.userRoles[rol])
+         
+            sessionStorage.setItem(rol, "true")
+        }
+        if (this.userRoles.indexOf('admin') === -1) {
+          sessionStorage.removeItem('admin')
+        }
+        if (this.userRoles.indexOf('notBanned') === -1) {
+          sessionStorage.removeItem('notBanned')
+        }
+      })).subscribe()
     }
-  
+
     return next.handle(req);
   }
 }

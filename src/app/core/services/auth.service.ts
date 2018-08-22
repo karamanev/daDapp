@@ -8,7 +8,7 @@ import { auth } from 'firebase';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-import { User } from '../models/user'
+import { User } from '../models/user-model'
 
 
 @Injectable({
@@ -34,6 +34,18 @@ export class AuthService {
     }));
   }
 
+  signUp(email: string, password: string) {
+    this.afAuth.auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((data) => {
+        this.toastr.success('Успешно се регистрирахте в приложението!', 'Добре дошли!');
+        this.router.navigate(['/auth/signin']);
+      })
+      .catch((err) => {
+        this.toastr.error('Има грешка в попълнените данни', 'Внимание!');
+      });
+  }
+  
   signIn(email: string, password: string) {
     this.afAuth
       .auth
@@ -68,7 +80,8 @@ export class AuthService {
         .then((token: string) => {
           this.token = token;
         })
-      this.updateUserData(credential.user);
+        sessionStorage.setItem('name', credential.user.email)
+        this.updateUserData(credential.user);
       this.router.navigate(['/recipes/start']);
       this.toastr.success('Успешно влязохте в системата', 'Добре дошли!');
     });
@@ -80,9 +93,8 @@ export class AuthService {
     const data: User = {
       uid: user.uid,
       email: user.email,
-      roles: { reader: true, banned: false }
+      roles: { reader: true }
     };
-
     return userRef.set(data, { merge: true });
   }
 
@@ -91,6 +103,7 @@ export class AuthService {
       .then(() => {
         this.router.navigate(['/auth/signin']);
         this.token = null;
+        sessionStorage.clear()
       });
   }
 
@@ -102,7 +115,6 @@ export class AuthService {
       .then((token: string) => {
         this.token = token;
       })
-
       return this.token;
     }
   }
@@ -111,18 +123,22 @@ export class AuthService {
     return this.token != null;
   }
 
-
-  
-
-  signUp(email: string, password: string) {
-    this.afAuth.auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((data) => {
-        this.toastr.success('Успешно се регистрирахте в приложението!', 'Добре дошли!');
-        this.router.navigate(['/auth/signin']);
-      })
-      .catch((err) => {
-        this.toastr.error('Има грешка в попълнените данни', 'Внимание!');
-      });
+  isAdmin(): boolean {
+    if (sessionStorage.getItem('admin'))
+      return true
   }
+
+  isAuthorOrAdmin(publisher:string): boolean {
+    if (publisher === sessionStorage.getItem('name')){
+      return true
+    }
+    if (sessionStorage.getItem('admin'))
+      return true
+  }
+
+  isLogged(): boolean{
+    if (sessionStorage.getItem('name'))
+      return true
+  }
+  
 }

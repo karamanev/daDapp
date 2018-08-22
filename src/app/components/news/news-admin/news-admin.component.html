@@ -1,3 +1,21 @@
-<p>
-  news-admin works!
-</p>
+<div class="bs-docs-section">
+  <div class="row">
+    <div *ngFor="let cat of categories | async" class="col-lg-4 ">
+      <div class="bs-component">
+        <div class="card mb-3">
+          <h3 class="card-header">{{cat.name}}</h3>
+          <div class="card-body" id="more">
+            <a class="btn btn-primary btn-lg" style="cursor: pointer;" *ngIf="isAdmin" (click)="delete()">Изтрий.</a>
+          </div>
+        </div>
+      </div>
+      <fieldset>
+        <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]="bindingModel.name" id="name" name="name">
+        </div>
+
+        <button class="btn btn-primary" type="submit">Добави</button>
+      </fieldset>
+
+    </div>
+  </div>

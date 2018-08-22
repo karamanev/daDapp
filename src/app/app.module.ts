@@ -14,16 +14,15 @@ import { HeaderComponent } from './components/common/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { AuthModule } from './components/auth/auth.module';
-import { NewsModule } from './components/news/news.module';
 import { HomeComponent } from './components/common/home/home.component';
 import { environment } from '../environments/environment';
-
+import { RolesInterceptor } from './core/interceptors/roles.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -35,18 +34,21 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AuthModule,
-    NewsModule,
+    AuthModule
   ],
   providers: [    
     AngularFirestore,
-
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RolesInterceptor,
+      multi: true
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

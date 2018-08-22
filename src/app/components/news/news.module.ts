@@ -10,7 +10,7 @@ import { NewsAdminComponent } from './news-admin/news-admin.component'
 import { NewsRoutingModule } from './news-routing.module';
 import { EditNewsComponent } from './edit-news/edit-news.component'
 import { NgxPaginationModule } from 'ngx-pagination';
-import { BlockchainComponent } from './blockchain/blockchain.component'
+import { SortNews } from '../../core/pipes/sorting-pipe';
 
 @NgModule({
     declarations: [
@@ -20,14 +20,13 @@ import { BlockchainComponent } from './blockchain/blockchain.component'
         NewsCategoriesComponent,
         NewsAdminComponent,
         EditNewsComponent,
-        BlockchainComponent
+        SortNews
     ],
     imports: [
         CommonModule,
         FormsModule,
         NewsRoutingModule,
         NgxPaginationModule
-
     ]
 })
 export class NewsModule { }

@@ -1,24 +1,24 @@
 <div class="bs-docs-section">
   <div class="row">
-    <div *ngFor="let new of news | async | paginate: {
+    <div *ngFor="let new of news | async | sortNews: 'news.date'  | paginate: {
       id: 'allNews',
       itemsPerPage: pageSize,
       currentPage: currentPage
-  }" class="col-lg-4">
+  }" class="col-lg-4 ">
       <div class="bs-component"></div>
       <div class="card mb-3">
         <h3 class="card-header">{{new.category}}</h3>
         <div class="card-body">
-          <h5 class="card-title">{{new.title}}</h5>
+          <h5 class="card-title size">{{new.title}}</h5>
           <h6 class="card-subtitle text-muted">{{new.publisher}}</h6>
         </div>
         <img style="height: 200px; width: 100%; display: block;" src="{{new.imageUrl}}" alt="{{new.title}}">
-        <div class="card-body">
-          <a routerLink="/news/details/{{new.id}}" class="card-link">Четете повече тук.</a>
-        </div>
-        <div class="card-footer text-muted">
-          {{new.date}}
-        </div>
+        <div class="card-body" id="more">
+            <a routerLink="/news/details/{{new.id}}" class="card-link">Четете повече тук.</a>
+          </div>
+          <div class="card-footer text-muted">
+              {{new.date  | date:'dd.MM.yyyy г.        H:mm ч'}}
+          </div>
       </div>
     </div>
   </div>

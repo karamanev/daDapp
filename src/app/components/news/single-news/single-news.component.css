@@ -10,3 +10,29 @@
 .jumbotron{
     max-width: 800px;
 }
+
+.check-logo{
+    width: 100px;
+}
+
+.alert-warning{
+    background-color:#2b3d51;
+}
+
+.rate{
+    margin:0;
+    margin-left: 20px;
+    height: 40px;
+    width:40px;
+    padding:0;
+    box-sizing: inherit;
+    font-size: 20pt
+}
+
+.news-header{
+    display: inline-block;
+}
+
+.rates{
+    margin-left: 343px;
+}

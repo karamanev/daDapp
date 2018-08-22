@@ -8,16 +8,15 @@ import { NewsAdminComponent } from './news-admin/news-admin.component'
 import { EditNewsComponent } from './edit-news/edit-news.component';
 
 import { AuthGuard } from '../../core/guards/auth.guard';
-import { BlockchainComponent } from './blockchain/blockchain.component';
+import { AdminGuard } from '../../core/guards/admin.guard';
 
 const routes : Route[] = [
     { path: 'all', component: AllNewsComponent },
     { path: 'create', component: CreateNewsComponent, canActivate: [ AuthGuard ] },
     { path: 'details/:id', component: SingleNewsComponent },
     { path: 'categories/:id', component: NewsCategoriesComponent },
-    { path: 'block', component: BlockchainComponent },
     { path: 'edit/:id', component: EditNewsComponent },
-    { path: 'admin', component: NewsAdminComponent , canActivate: [ AuthGuard ]},
+    { path: 'admin', component: NewsAdminComponent , canActivate: [ AuthGuard, AdminGuard ]},
   ]
   
   @NgModule({

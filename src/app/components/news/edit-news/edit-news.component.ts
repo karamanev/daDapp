@@ -11,14 +11,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EditNewsComponent implements OnInit {
 
-  id : string;
-  bindingModel : NewsCreate;
+  id: string;
+  bindingModel: NewsCreate;
 
   constructor(
-    private newsService : NewsService,
-    private route : ActivatedRoute,
-    private router : Router,
-    private toastr : ToastrService
+    private newsService: NewsService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -31,9 +31,8 @@ export class EditNewsComponent implements OnInit {
 
   edit() {
     const body = {
-      [this.id] : this.bindingModel
+      [this.id]: this.bindingModel
     }
-    
     this.newsService.editNews(body)
       .subscribe((data) => {
         this.toastr.success('Новината е променена!', 'Готово');

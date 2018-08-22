@@ -19,8 +19,7 @@ export class AllNewsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-     this.news = this.newsService
-     .getAllNews();
+     this.news = this.newsService.getAllNews();
   }
 
   changePage(page){

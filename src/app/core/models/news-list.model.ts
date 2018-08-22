@@ -5,7 +5,7 @@ export class NewsList {
     public summary: string,
     public category: string,
     public publisher: string,
-    public rating: number,
+    public date: Date,
     public imageUrl: string,
   ) { }
 }

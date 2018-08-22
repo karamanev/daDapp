@@ -12,4 +12,9 @@ export class NewsAdminComponent implements OnInit {
   ngOnInit() {
   }
 
+  private get isAdmin(): boolean {
+    if (sessionStorage.getItem('admin'))
+      return true
+  }
+  
 }

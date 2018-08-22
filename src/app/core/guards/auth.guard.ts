@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
     if (this.authService.isAuthenticated()) {
       return true;
     }
-    this.toastr.error('Влезте в своя профил, за да публикувате новини', 'Грешка!');
+    this.toastr.error('Влезте в профилa си!', 'Грешка');
     this.router.navigate(['/auth/signin']);
     return false;
   }

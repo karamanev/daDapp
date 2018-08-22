@@ -4,12 +4,7 @@ import { map } from 'rxjs/operators';
 import { NewsList } from '../models/news-list.model';
 import { NewsCreate } from '../models/news-create.model';
 
-
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { blockchainExplorer } from '../blockchain api/contractExplorer';
-import { blockchainNews } from '../models/blockchain-create.model';
-//import { blockchainExplorer } from '../blockchain api/contractExplorer'
+import { blockchainExplorer } from '../blockchain api/contract-service';
 
 const baseUrl = 'https://testproj-2089a.firebaseio.com/news/'
 
@@ -28,14 +23,14 @@ export class NewsService {
         const ids = Object.keys(res);
         const news : NewsList[] = [];
         for (const i of ids) {
-          news.push(new NewsList(i, res[i].title, res[i].summary, res[i].category, res[i].publisher, res[i].rating, res[i].imageUrl));
+          news.push(new NewsList(i, res[i].title, res[i].summary, res[i].category, res[i].publisher, res[i].date, res[i].imageUrl));
         }
-        return news;
+
+        return news
       }));
   }
   
   createNews(body : NewsCreate) {
-    
     return this.http.post(`${baseUrl}.json`, body);
   }
 

@@ -7,7 +7,7 @@ export class contractInfo {
         return "0x0c9276e4899bF32557fd96AB06a6F85042faC2d0"
     }
     getContractAddress() {
-        return "0xddf35c0631209a79de19ec8c42b783d3145d602b"
+        return "0xbc30cbf4e61afb337b7f8acce63e3357bebfe969"
     }
     getContractABI() {
         let abi = [

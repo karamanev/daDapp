@@ -15,12 +15,3 @@ export class AppComponent implements OnInit{
 
 
 }
-
-/*
-: void {
-    firebase.initializeApp({
-      apiKey: "AIzaSyBminGPu-zeb7j5z2aZPVlR20ZMUqkWV1s",
-      authDomain: "testproj-2089a.firebaseapp.com"
-    })
-  }
-*/

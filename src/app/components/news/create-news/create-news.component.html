@@ -21,7 +21,7 @@
 
           <div class="form-group">
             <label class="col-form-label" for="publisher">Автор</label>
-            <input type="text" class="form-control" [(ngModel)]="bindingModel.publisher" id="publisher" name="publisher">
+            <input type="text" class="form-control" id="readOnlyInput" [(ngModel)]="bindingModel.publisher" name="publisher">
           </div>
 
         <div class="col-xs-12">
@@ -30,10 +30,7 @@
             <input required type="text" id="imagePath" [(ngModel)]="bindingModel.imageUrl" name="imageUrl" class="form-control">
           </div>
         </div>
-
-  
-
-        <button class="btn btn-primary" [disabled]="f.invalid" type="submit">Публикувай</button>
+       <button class="btn btn-primary" [disabled]="f.invalid" type="submit">Публикувай</button>
 
       </fieldset>
 
