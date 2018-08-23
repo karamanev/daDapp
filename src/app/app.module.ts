@@ -8,6 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/common/header/header.component';
@@ -34,7 +35,10 @@ import { RolesInterceptor } from './core/interceptors/roles.interceptor';
     AppRoutingModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AuthModule
+    AuthModule,
+    NgxCaptchaModule.forRoot({
+      reCaptcha2SiteKey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
+    }),
   ],
   providers: [    
     AngularFirestore,

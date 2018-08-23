@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CategoriesService } from '../../../core/services/category.service';
 import { NewsCreate } from '../../../core/models/news-create.model';
-import { NewsService } from '../../../core/services/news-list.service';
+import { NewsService } from '../../../core/services/news.service';
 import { blockchainExplorer } from '../../../core/blockchain api/contract-service';
 
 import { blockchainNews } from '../../../core/models/blockchain-create.model';
@@ -37,7 +37,6 @@ export class CreateNewsComponent implements OnInit {
 
   ngOnInit() {
     this.categories = this.service.getAllCategories()
-    console.log(this.categories)
   }
 
   create() {

@@ -16,7 +16,6 @@ export class NewsCategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.categories = this.service.getAllCategories()
-    console.log(this.categories)
   }
 
 }

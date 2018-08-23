@@ -25,6 +25,7 @@
     "ethers": "^3.0.26",
     "firebase": "^5.3.1",
     "lodash": "^4.17.10",
+    "ngx-captcha": "^4.0.1",
     "ngx-pagination": "^3.2.0",
     "ngx-toastr": "^8.10.0",
     "rxjs": "^6.0.0",

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form #f="ngForm" (ngSubmit)="login(f)">
+      <form #loginForm="ngForm" (ngSubmit)="login()">
           <fieldset>
               <legend>Вход</legend>
         <div class="form-group">
@@ -9,10 +9,15 @@
           required
           type="email" 
           id="email" 
+          pattern="^[a-zA-Z0-9.!#$%’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
           name="email"
-          ngModel
+          [(ngModel)] = "model.email"
+          #email="ngModel"
           class="form-control">
+
+          <div class="text-danger"  [hidden]="email.valid || email.pristine">Моля, въведете валиден имейл.</div>
         </div>
+
         <div class="form-group">
           <label for="password">Парола</label>
           <input
@@ -20,10 +25,13 @@
             type="password"
             id="password"
             name="password"
-            ngModel
+            [(ngModel)]="model.password"
+            name="password"
+            #password="ngModel"
             class="form-control">
+            <div class="text-danger" [hidden]="password.valid || password.pristine">Моля, въведете валидна парола.</div>
         </div>
-        <button class="btn btn-primary" [disabled]="f.invalid" type="submit">Влез</button>
+        <button class="btn btn-primary" [disabled]="model.invalid" type="submit">Влез</button>
       </fieldset>
       </form>
     </div>
@@ -33,7 +41,7 @@
       <form #fo="ngForm" (ngSubmit)="authService.googleLogin()">
         <fieldset>
               
-        <button id="google" [disabled]="fo.invalid" type="submit"><img src="../../../../assets/btn_google_signin_dark_normal_web.png"></button>
+        <button id="google" [disabled]="loginForm.invalid" type="submit"><img src="../../../../assets/btn_google_signin_dark_normal_web.png"></button>
         </fieldset>
       </form>
     </div>

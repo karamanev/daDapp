@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { NewsService } from '../../../core/services/news-list.service'
+import { NewsService } from '../../../core/services/news.service'
 import { NewsList } from '../../../core/models/news-list.model'
 
 @Component({

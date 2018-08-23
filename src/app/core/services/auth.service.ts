@@ -10,6 +10,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 
 import { User } from '../models/user.model'
+import { SignModel } from '../models/sign.model';
 
 
 @Injectable({
@@ -41,9 +42,9 @@ export class AuthService {
     this.users = this.usersCollection.valueChanges();
   }
 
-  signUp(email: string, password: string) {
+  signUp(user: SignModel) {
     this.afAuth.auth
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(user.email, user.password)
       .then((data) => {
         this.toastr.success('Успешно се регистрирахте в приложението!', 'Добре дошли!');
         this.router.navigate(['/auth/signin']);
@@ -53,10 +54,10 @@ export class AuthService {
       });
   }
   
-  signIn(email: string, password: string) {
+  signIn(user: SignModel) {
     this.afAuth
       .auth
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(user.email, user.password)
       .then((data) => {
         this.afAuth.auth
           .currentUser
@@ -64,7 +65,7 @@ export class AuthService {
           .then((token: string) => {
             this.token = token;
           })
-        sessionStorage.setItem('name', email)
+        sessionStorage.setItem('name', user.email)
         this.updateUserData(data.user);
         this.router.navigate(['/recipes/start']);
         this.toastr.success('Успешно влязохте в системата', 'Добре дошли!');

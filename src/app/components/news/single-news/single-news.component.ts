@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsList } from '../../../core/models/news-list.model';
-import { NewsService } from '../../../core/services/news-list.service';
+import { NewsService } from '../../../core/services/news.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { blockchainExplorer } from '../../../core/blockchain api/contract-service';

@@ -16,7 +16,7 @@ const routes : Route[] = [
     { path: 'all', component: AllNewsComponent },
     { path: 'create', component: CreateNewsComponent, canActivate: [ AuthGuard ] },
     { path: 'details/:id', component: SingleNewsComponent },
-    { path: 'category/:id', component: NewsCategoryComponent },
+    { path: 'category/:title', component: NewsCategoryComponent },
     { path: 'categories', component: NewsCategoriesComponent },
     { path: 'edit/:id', component: EditNewsComponent },
     { path: 'search', component: SearchNewsComponent },
