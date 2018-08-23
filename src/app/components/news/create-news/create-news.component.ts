@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+
+import { ToastrService } from 'ngx-toastr';
+import { CategoriesService } from '../../../core/services/category.service';
 import { NewsCreate } from '../../../core/models/news-create.model';
 import { NewsService } from '../../../core/services/news-list.service';
-import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 import { blockchainExplorer } from '../../../core/blockchain api/contract-service';
+
 import { blockchainNews } from '../../../core/models/blockchain-create.model';
+import { CategoryList } from '../../../core/models/category-list.model';
 
 @Component({
   selector: 'app-create-news',
@@ -13,27 +18,26 @@ import { blockchainNews } from '../../../core/models/blockchain-create.model';
 })
 export class CreateNewsComponent implements OnInit {
 
-  bindingModel: NewsCreate;
+  bindingModel: NewsCreate
   name: string
+  categories : Observable<CategoryList[]>
 
   constructor(
     private newsService: NewsService,
     private explorer: blockchainExplorer,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private service: CategoriesService,
   ) {
     this.name = sessionStorage.getItem('name')
     let date = new Date()
-    if (this.name !== undefined) {
       this.bindingModel = new NewsCreate("", "", "", this.name, date, "")
-    }
-    else {
-      this.bindingModel = new NewsCreate("", "", "", "", date, "")
-    }
   }
 
 
   ngOnInit() {
+    this.categories = this.service.getAllCategories()
+    console.log(this.categories)
   }
 
   create() {
@@ -43,7 +47,7 @@ export class CreateNewsComponent implements OnInit {
         this.toastr.success('Новината e публикувана.', 'Готово');
         this.router.navigate(['/news/all']);
         this.explorer.addCurrentNews(new blockchainNews(this.bindingModel.title, this.bindingModel.summary, this.bindingModel.category, this.bindingModel.publisher))
-          .then(a => this.toastr.success('Новината e в блокчейна.', 'Готово'))
+          .then(a => this.toastr.success('Новината e в блокчейна.', 'Готово и тук:'))
           .catch(err => this.toastr.error(err, 'Грешка!'))
       })
   }

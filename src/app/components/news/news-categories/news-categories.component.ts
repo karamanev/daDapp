@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CategoryList } from '../../../core/models/category-list.model';
+import { CategoriesService } from '../../../core/services/category.service';
 
 @Component({
   selector: 'app-news-categories',
@@ -6,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./news-categories.component.css']
 })
 export class NewsCategoriesComponent implements OnInit {
-
-  constructor() { }
+  categories : Observable<CategoryList[]>
+  constructor(
+    private service: CategoriesService
+      ) { }
 
   ngOnInit() {
+    this.categories = this.service.getAllCategories()
+    console.log(this.categories)
   }
 
 }

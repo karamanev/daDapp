@@ -1,6 +1,11 @@
-
+.size{
+    height: 200px;
+}
 
 .back{
     background-color: #2b3d51;
     border: none;
+}
+.card{
+    border:none
 }

@@ -3,12 +3,13 @@ import * as firebase from 'firebase';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { auth } from 'firebase';
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 
-import { User } from '../models/user-model'
+import { User } from '../models/user.model'
 
 
 @Injectable({
@@ -17,13 +18,16 @@ import { User } from '../models/user-model'
 
 export class AuthService {
   user: Observable<User>;
+  users: Observable<User[]>;
   token: string;
+  private usersCollection: AngularFirestoreCollection<User>
 
   constructor(
     private toastr: ToastrService,
     private router: Router,
     private afAuth: AngularFireAuth,
-    private afs: AngularFirestore, ) {
+    private afs: AngularFirestore,
+    private db: AngularFireDatabase) {
 
     this.user = this.afAuth.authState.pipe(switchMap(user => {
       if (user) {
@@ -31,7 +35,10 @@ export class AuthService {
       } else {
         return of(null);
       }
-    }));
+    }))
+
+    this.usersCollection = afs.collection<User>('users')    
+    this.users = this.usersCollection.valueChanges();
   }
 
   signUp(email: string, password: string) {
@@ -117,6 +124,32 @@ export class AuthService {
       })
       return this.token;
     }
+  }
+
+  getAllUsers(){
+
+
+
+    console.log(this.db.list('/news'),  {
+      query: {
+        orderByChild: 'title',
+        limitToFirst: 10}})
+
+    let users: Observable<User[]>
+    let userRef: AngularFirestoreDocument<any> = this.afs.doc('users/users.json');
+
+    var docRef = this.afs.collection('users')
+    
+    console.log(userRef)
+    console.log(docRef)
+    console.log(this.usersCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as User;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))))
+ 
+    return users
   }
 
   isAuthenticated(): boolean {

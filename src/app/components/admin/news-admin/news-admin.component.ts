@@ -7,14 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsAdminComponent implements OnInit {
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }
 
-  private get isAdmin(): boolean {
-    if (sessionStorage.getItem('admin'))
-      return true
-  }
-  
 }

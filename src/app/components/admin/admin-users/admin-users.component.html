@@ -1,0 +1,15 @@
+<div class="bs-docs-section">
+    <legend _ngcontent-c10="">Потребители</legend>
+    <div class="row">
+      <div *ngFor="let user of users | async" class="col-lg-4 ">
+        <div class="bs-component">
+          <div class="card mb-3">
+            <h3 class="card-header">{{user.email}}</h3>
+            <div class="card-body" id="more">
+              <a class="btn btn-primary btn-lg" style="cursor: pointer;" *ngIf="auth.isAdmin" (click)="banUser(user.uid)">Забрана за публикуване</a>
+            </div>
+          </div>
+        </div>
+  
+    </div>
+  </div>

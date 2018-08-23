@@ -1,0 +1,27 @@
+<div class="bs-docs-section">
+  <legend _ngcontent-c10="">Рубрики</legend>
+  <div class="row">
+    <div *ngFor="let category of categories | async" class="col-lg-4 ">
+      <div class="bs-component">
+        <div class="card mb-3">
+          <h3 class="card-header">{{category.name}}</h3>
+          <div class="card-body" id="more">
+            <a class="btn btn-primary btn-lg" style="cursor: pointer;" *ngIf="auth.isAdmin" (click)="delete(category.id)">Изтрий</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  
+    <form #f="ngForm" (ngSubmit)="create()" class="add">
+      <fieldset>
+        <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]="bindingModel.name" id="name" name="name">
+        </div>
+
+        <button class="btn btn-primary"  [disabled]="f.invalid" type="submit">Добави</button>
+      </fieldset>
+    </form>
+
+  </div>
+</div>
