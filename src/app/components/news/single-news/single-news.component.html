@@ -52,10 +52,10 @@
     <hr class="my-4">
 
     <p class="lead">
-      <a class="btn btn-primary btn-lg" style="cursor: pointer;" *ngIf="isAuthorOrAdmin" routerLink="/news/edit/{{id}}">Промени</a>
+      <a class="btn btn-primary btn-lg" style="cursor: pointer;" *ngIf="auth.isAuthorOrAdmin(news.publisher)" routerLink="/news/edit/{{id}}">Промени</a>
       </p>
 
     <p class="lead"  >
-        <a class="btn btn-primary btn-lg" style="cursor: pointer;" *ngIf="isAdmin" (click)="delete()">Изтрий</a>
+        <a class="btn btn-primary btn-lg" style="cursor: pointer;" *ngIf="auth.isAdmin()" (click)="delete()">Изтрий</a>
       </p>
   </div>

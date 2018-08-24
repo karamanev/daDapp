@@ -1,28 +1,36 @@
 <div *ngIf="bindingModel">
   <div class="row">
     <div class="col-xs-12">
-      <form #f="ngForm" (ngSubmit)="edit()">
+      <form #editForm="ngForm" (ngSubmit)="edit()">
 
         <fieldset>
             <legend>Редактирай новината</legend>
             <div class="form-group">
               <label class="col-form-label" for="title">Заглавие</label>
-              <input type="text" class="form-control" [(ngModel)]="bindingModel.title" placeholder="Заглавие" id="title"name="title">
+              <input type="text" id="title" class="form-control" [(ngModel)]="bindingModel.title" minlength="5" 
+              #title="ngModel" 
+              name="title" required>
+              <div class="text-danger" [hidden]="title.valid || title.pristine">Моля, въведете валидно заглавие.</div>
             </div>
     
             <div class="form-group">
               <label for="summary">Текст</label>
-              <textarea class="form-control" id="summary" rows="3" [(ngModel)]="bindingModel.summary"name="summary"></textarea>
+              <textarea class="form-control" id="summary" rows="6" #summary="ngModel"
+              minlength="10"
+              [(ngModel)]="bindingModel.summary" name="summary" required></textarea>
+              <div class="text-danger" [hidden]="summary.valid || summary.pristine">Моля, въведете текст.</div>
             </div>
     
-            <div class="col-xs-12">
-              <div class="form-group">
-                <label for="imageUrl">Адрес на снимката</label>
-                <input required type="text" id="imagePath" [(ngModel)]="bindingModel.imageUrl" name="imageUrl" class="form-control">
-              </div>
+            <div class="form-group">
+              <label for="imageUrl">Адрес на снимката</label>
+              <input required type="text" id="imagePath" [(ngModel)]="bindingModel.imageUrl" 
+              minlength="4" #imageUrl ="ngModel"
+              name="imageUrl" class="form-control" required>
+              <div class="text-danger" [hidden]="imageUrl.valid || imageUrl.pristine">Моля, въведете валидeн адрес на изображение.</div>
             </div>
+            <br>
     
-            <button class="btn btn-primary" [disabled]="f.invalid" type="submit">Промени</button>
+            <button class="btn btn-primary" [disabled]="editForm.form.invalid" type="submit">Промени</button>
 
         </fieldset>
       </form>

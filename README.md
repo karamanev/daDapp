@@ -1,27 +1,11 @@
 # Dabedapp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+"Da be, dApp" is a project that connected traditional online media with blockchain. It was made using Angular6 and Ethereum blockchain test net.
 
-## Development server
+## Main possibilities
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+In "Da be, dApp" visitors can publish their own news in chosen topic. Once published, the news goes to the Firebase backend and on the other way - hashed version is published in the Solidity contract in the Ethereum blockchain test net. The chosen from the author topic is some kind of query that the news is connected with the topic. If you publish gossips, visitors with Ethereum accounts can vote is your news really connected to the topic. All the time visitors can check if the news in the project is changed, connecting to the Ethereum contract. Gaining higher rating authors receive bonuses and the blockchain part is a form of guaranty for the quality of the news. The project is kind of idea for the media of the future, which is decentralized, the information is immutable and it is easy to fight against fake news.
 
-## Code scaffolding
+## User roles
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Unregistered users can only read news both in the traditional backend and in the blockchain. Registered users that are not banned by an administrator can publish their news. Administrators can ban users or make other users administrators. Administrators can also choose the topics, in which will be published news. Users with Ethereum accounts can vote for the news, giving then positive or negative points.

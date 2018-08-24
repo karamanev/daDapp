@@ -18,9 +18,9 @@ const routes : Route[] = [
     { path: 'details/:id', component: SingleNewsComponent },
     { path: 'category/:title', component: NewsCategoryComponent },
     { path: 'categories', component: NewsCategoriesComponent },
-    { path: 'edit/:id', component: EditNewsComponent },
+    { path: 'edit/:id', component: EditNewsComponent, canActivate: [ AuthGuard ] },
     { path: 'search', component: SearchNewsComponent },
-    { path: 'admin', component: NewsAdminComponent , canActivate: [ AuthGuard, AdminGuard ]},
+    { path: 'admin', component: NewsAdminComponent , canActivate: [ AdminGuard, AuthGuard ]},
   ]
   
   @NgModule({

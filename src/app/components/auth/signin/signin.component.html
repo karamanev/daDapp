@@ -15,7 +15,7 @@
           #email="ngModel"
           class="form-control">
 
-          <div class="text-danger"  [hidden]="email.valid || email.pristine">Моля, въведете валиден имейл.</div>
+          <div class="text-danger" [hidden]="email.valid || email.pristine">Моля, въведете валиден имейл.</div>
         </div>
 
         <div class="form-group">
@@ -24,14 +24,15 @@
             required
             type="password"
             id="password"
+            minlength="4"
             name="password"
             [(ngModel)]="model.password"
             name="password"
             #password="ngModel"
             class="form-control">
-            <div class="text-danger" [hidden]="password.valid || password.pristine">Моля, въведете валидна парола.</div>
+            <div class="text-danger" [hidden]="password.valid || password.pristine">Паролата трябва да е с поне 4 знака.</div>
         </div>
-        <button class="btn btn-primary" [disabled]="model.invalid" type="submit">Влез</button>
+        <button class="btn btn-primary" [disabled]="loginForm.form.invalid" type="submit">Влез</button>
       </fieldset>
       </form>
     </div>
@@ -41,7 +42,7 @@
       <form #fo="ngForm" (ngSubmit)="authService.googleLogin()">
         <fieldset>
               
-        <button id="google" [disabled]="loginForm.invalid" type="submit"><img src="../../../../assets/btn_google_signin_dark_normal_web.png"></button>
+        <button id="google" type="submit"><img src="../../../../assets/btn_google_signin_dark_normal_web.png"></button>
         </fieldset>
       </form>
     </div>

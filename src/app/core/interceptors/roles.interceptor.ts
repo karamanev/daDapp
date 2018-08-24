@@ -23,16 +23,16 @@ export class RolesInterceptor implements HttpInterceptor {
     if (token) {
       this.authService.user.pipe(map(user => {
         this.userRoles = Object.keys(user.roles)
-        for (let rol of this.userRoles) {
-          if (user.roles[rol] === true){
-            sessionStorage.setItem(rol, "true")
+
+        if (this.userRoles) {
+          for (let rol of this.userRoles) {
+            if (user.roles[rol] === true) {
+              sessionStorage.setItem(rol, "true")
+            }
           }
-        }
-        if (user.roles['admin'] === false) {
-          sessionStorage.removeItem('admin')
-        }
-        if (user.roles['notBanned'] === false) {
-          sessionStorage.removeItem('notBanned')
+          if (this.userRoles['admin'] === false) {
+            sessionStorage.removeItem('admin')
+          }
         }
       })).subscribe()
     }

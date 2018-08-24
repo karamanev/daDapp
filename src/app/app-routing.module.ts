@@ -5,7 +5,6 @@ import { SigninComponent } from './components/auth/signin/signin.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { NewsModule } from './components/news/news.module';
 import { BlockchainModule } from './components/blockchain/blockchain.module'
-import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

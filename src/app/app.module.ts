@@ -9,21 +9,21 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { AuthModule } from './components/auth/auth.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/common/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
-import { AuthModule } from './components/auth/auth.module';
+import { RolesInterceptor } from './core/interceptors/roles.interceptor';
 import { HomeComponent } from './components/common/home/home.component';
 import { environment } from '../environments/environment';
-import { RolesInterceptor } from './core/interceptors/roles.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent,
+    HomeComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

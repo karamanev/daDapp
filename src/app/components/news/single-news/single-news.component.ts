@@ -39,7 +39,7 @@ export class SingleNewsComponent implements OnInit {
   }
 
   delete() {
-    if (this.isAdmin) {
+    if (this.auth.isAdmin) {
       this.newsService.deleteNews(this.id)
         .subscribe((data) => {
           this.toastr.success('Новината е изтрита.', 'Готово!');
@@ -62,20 +62,5 @@ export class SingleNewsComponent implements OnInit {
       this.showButton = false
       this.showFake = true
     }
-  }
-
-  private get isAdmin(): boolean {
-    if (this.auth.isAdmin)
-      return true
-  }
-  private get isAuthorOrAdmin(): boolean {
-    let publisher = this.news.publisher
-    if (this.auth.isAuthorOrAdmin(publisher))
-      return true
-     }
-
-  private get isLogged(): boolean {
-    if (this.auth.isLogged)
-      return true
   }
 }

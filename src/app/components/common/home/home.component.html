@@ -1,26 +1,106 @@
-<div class="bs-component">
-  <ul class="red">
-    <li class="item">
-      <a class="link" routerLink="/news/all">Всички новини</a>
-    </li>
-    <li class="item">
-      <a class="link" routerLink="/news/categories">Категории</a>
-    </li>
-    <li class="item">
-      <a class="link" routerLink="/news/best">Най-четени</a>
-    </li>
-    <li class="item">
-      <a class="link" routerLink="/auth/signup" *ngIf="!authService.isAuthenticated()">Регистрация</a>
-    </li>
-    <li class="item">
-      <a class="link" routerLink="/news/admin" >Админ</a>
-    </li>
-    <li class="item">
-      <a class="link" routerLink="/auth/signin" *ngIf="!authService.isAuthenticated()">Вход</a>
-    </li>
+<div (click)="onAnimate()">
+  <div class="bs-component">
+    <div class="col-lg-10 col-md-7 col-sm-6">
+      <h1>Добре дошли в:</h1>
+    </div>
+  </div>
 
-    <li class="item">
-      <a class="link" routerLink="/news/add" *ngIf="authService.isAuthenticated()">Публикувай!</a>
-    </li>
-  </ul>
+  <div class="bs-component">
+    <div class="col-lg-10 col-md-7 col-sm-6 ">
+      <img src="../../assets/logo2.png" id="logoImg2" [@divState]="state[0]">
+      <h2 class="logo" [@divState2]="state[0]">Блокчейн социална медия</h2>
+    </div>
+  </div>
+  <div class="between2"></div>
+
+  <div id="annonce">
+    <div class="bs-component">
+      <div class="col-lg-10 col-md-7 col-sm-6">
+        <h2 class="link" routerLink="/news/all" [@scrollAnimation]="state[1]">Влезте и вижте последните публикувани новини!</h2>
+      </div>
+    </div>
+
+    <div class="between"></div>
+
+    <div class="bs-component even">
+      <div class="col-lg-10 col-md-7 col-sm-6">
+        <h2 class="link even" routerLink="/block/all" [@scrollAnimation2]="state[1]">Проверете новините, публикувани в блокчейна!
+        </h2>
+      </div>
+    </div>
+
+    <div class="between"></div>
+
+    <div class="bs-component">
+      <div class="col-lg-10 col-md-7 col-sm-6">
+        <h2 class="link" routerLink="/auth/signup" [@scrollAnimation]="state[1]">Регистрирайте се и добавете своята новина!</h2>
+      </div>
+    </div>
+
+    <div class="between2"></div>
+    <div class="between2"></div>
+    
+    <div class="bs-component">
+      <div class="col-lg-10 col-md-7 col-sm-6">
+        <div class="bs-component">
+          <h2 class="even" routerLink="/home" id="toCenter" [@scrollAnimation2]="state[2]">Как работи платформата?!</h2>
+          <ul class="red">
+            <li class="item">
+              <p> <img src="../../assets/logoM.jpg" id="logoImg" [@scrollAnimation]="state[2]">                
+                <span [@scrollAnimation2]="state[2]">Добавяте своята новина в избрана от вас категория и тя се запазва. </span></p>
+            </li>
+            <li class="item">
+              <p> <img src="../../assets/logoM.jpg" id="logoImg" [@scrollAnimation2]="state[2]"> <span [@scrollAnimation2]="state[2]">Автоматично
+                  се записва в кодиран вид в блокчейн тестовата мрежа на Етереум.</span>
+              </p>
+            </li>
+            <li class="item">
+              <p> <img src="../../assets/logoM.jpg" id="logoImg" [@scrollAnimation]="state[2]"> <span [@scrollAnimation2]="state[3]">Чрез
+                избраната от вас категория вие давате заявка за съдържанието на публикацията.
+              </span>
+              </p>
+            </li>
+            <li class="item">
+              <p> <img src="../../assets/logoM.jpg" id="logoImg" [@scrollAnimation2]="state[2]"> <span [@scrollAnimation2]="state[4]">Със
+                своите акаунти потребителите на Етереум определят рейтинга на новината ви.
+              </span>
+              </p>
+            </li>
+            <li class="item">
+              <p> <img src="../../assets/logoM.jpg" id="logoImg" [@scrollAnimation]="state[2]"> <span [@scrollAnimation2]="state[3]">С
+                натрупването на публикации, трупате рейтинг в дадената категория.
+              </span>
+              </p>
+            </li>
+            <li class="item">
+              <p> <img src="../../assets/logoM.jpg" id="logoImg" [@scrollAnimation2]="state[2]"> <span [@scrollAnimation2]="state[4]">Благодарение
+                на блокчейн мрежата се гарантира непроменимостта на данните.
+              </span>
+              </p>
+            </li>
+            <li class="item">
+              <p> <img src="../../assets/logoM.jpg" id="logoImg" [@scrollAnimation]="state[2]"> <span [@scrollAnimation2]="state[4]">С
+                бутона под всяка новина проверявате дали тя е гарантирана от блокчейн.
+              </span>
+              </p>
+            </li>
+            <li class="item">
+              <p> <img src="../../assets/logoM.jpg" id="logoImg" [@scrollAnimation2]="state[2]"><span [@scrollAnimation2]="state[4]">
+                <a routerLink="auth/signup">Регистрирайте се</a> или <a routerLink="auth/signin">влезте в своя профил</a>
+                и публикувайте!</span>
+              </p>
+            </li>
+
+            <li class="item">
+              <p> <img src="../../assets/logoM.jpg" id="logoImg" [@scrollAnimation]="state[2]"><span [@scrollAnimation2]="state[4]">
+                <a routerLink="news/all">Приятно четене на новините в „Да, бе, d`app“!</a></span>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="bs-docs-section">
   <div class="row">
-    <div *ngFor="let new of news | async" class="col-lg-4">
+    <div *ngFor="let new of news | async| sortNews: 'news.category' " class="col-lg-4">
       <div class="bs-component"></div>
       <div class="card mb-3">
         <h3 class="card-header">{{new.category}}</h3>

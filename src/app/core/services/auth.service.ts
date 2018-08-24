@@ -38,7 +38,7 @@ export class AuthService {
       }
     }))
 
-    this.usersCollection = afs.collection<User>('users')    
+    this.usersCollection = afs.collection<User>('users')
     this.users = this.usersCollection.valueChanges();
   }
 
@@ -53,7 +53,7 @@ export class AuthService {
         this.toastr.error('Има грешка в попълнените данни', 'Внимание!');
       });
   }
-  
+
   signIn(user: SignModel) {
     this.afAuth
       .auth
@@ -66,18 +66,26 @@ export class AuthService {
             this.token = token;
           })
         sessionStorage.setItem('name', user.email)
-        this.updateUserData(data.user);
-        this.router.navigate(['/recipes/start']);
-        this.toastr.success('Успешно влязохте в системата', 'Добре дошли!');
+        this.updateUserData(data.user)
+        this.router.navigate(['/recipes/start'])
+        this.toastr.success('Успешно влязохте в системата', 'Добре дошли!')
       })
       .catch((err) => {
-        this.toastr.error('Има грешка в попълнените данни', 'Внимание!');
+        this.toastr.error('Има грешка в попълнените данни', 'Внимание!')
       });
   }
 
   googleLogin() {
-    const provider = new auth.GoogleAuthProvider();
-    return this.oAuthLogin(provider);
+    try {
+      const provider = new auth.GoogleAuthProvider()
+      return this.oAuthLogin(provider)
+    }
+
+    catch{
+      (err) => {
+        this.toastr.error(err, 'Проблем!')
+      }
+    }
   }
 
   oAuthLogin(provider) {
@@ -88,8 +96,8 @@ export class AuthService {
         .then((token: string) => {
           this.token = token;
         })
-        sessionStorage.setItem('name', credential.user.email)
-        this.updateUserData(credential.user);
+      sessionStorage.setItem('name', credential.user.email)
+      this.updateUserData(credential.user);
       this.router.navigate(['/recipes/start']);
       this.toastr.success('Успешно влязохте в системата', 'Добре дошли!');
     });
@@ -118,29 +126,28 @@ export class AuthService {
   getToken() {
     if (firebase.auth().currentUser !== null) {
       firebase.auth()
-      .currentUser
-      .getIdToken()
-      .then((token: string) => {
-        this.token = token;
-      })
+        .currentUser
+        .getIdToken()
+        .then((token: string) => {
+          this.token = token;
+        })
       return this.token;
     }
   }
 
-  getAllUsers(){
-
-
-
-    console.log(this.db.list('/news'),  {
+  getAllUsers() {
+    console.log(this.db.list('/news'), {
       query: {
         orderByChild: 'title',
-        limitToFirst: 10}})
+        limitToFirst: 10
+      }
+    })
 
     let users: Observable<User[]>
     let userRef: AngularFirestoreDocument<any> = this.afs.doc('users/users.json');
 
     var docRef = this.afs.collection('users')
-    
+
     console.log(userRef)
     console.log(docRef)
     console.log(this.usersCollection.snapshotChanges().pipe(
@@ -149,7 +156,7 @@ export class AuthService {
         const id = a.payload.doc.id;
         return { id, ...data };
       }))))
- 
+
     return users
   }
 
@@ -158,21 +165,20 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
+    if (sessionStorage.getItem('admin') !== null)
+      return true
+  }
+
+  isAuthorOrAdmin(publisher: string): boolean {
+    if (publisher === sessionStorage.getItem('name'))
+      return true
+
     if (sessionStorage.getItem('admin'))
       return true
   }
 
-  isAuthorOrAdmin(publisher:string): boolean {
-    if (publisher === sessionStorage.getItem('name')){
-      return true
-    }
-    if (sessionStorage.getItem('admin'))
-      return true
-  }
-
-  isLogged(): boolean{
+  isLogged(): boolean {
     if (sessionStorage.getItem('name'))
       return true
   }
-  
 }

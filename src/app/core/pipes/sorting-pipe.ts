@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {NewsList} from '../models/news-list.model'
 
 @Pipe({
   name: 'sortNews'
