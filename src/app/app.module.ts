@@ -19,6 +19,7 @@ import { RolesInterceptor } from './core/interceptors/roles.interceptor';
 import { HomeComponent } from './components/common/home/home.component';
 import { environment } from '../environments/environment';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,4 +56,5 @@ import { environment } from '../environments/environment';
   ],
   bootstrap: [AppComponent],
 })
+
 export class AppModule { }

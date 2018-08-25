@@ -30,7 +30,6 @@ export class BlockchainRatePlusComponent implements OnInit {
   async rate() {
     this.explorer.ratePlus(this.bindingModel)
       .then(() => {
-        this.toastr.success('Новината e оценена.', 'Готово')
         this.router.navigate(['/news/all'])
       })
       .catch(err => this.toastr.error(err, 'Грешка!'))

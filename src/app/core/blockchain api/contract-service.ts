@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import * as ethers from 'ethers'
-import * as web3 from 'web3'
 
 import { contractInfo } from './contractInfo'
 import { blockchainNews } from '../models/blockchain-create.model';
 import { blockchainList } from '../models/blockchain-list.model';
 import { Rate } from '../models/rate.model'
+import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +20,7 @@ export class blockchainExplorer {
     blockchainNews: blockchainNews
     blockchainList: blockchainList
 
-    constructor() {
+    constructor(private toastr: ToastrService) {
         this.provider = ethers.providers.getDefaultProvider('ropsten')
         this.contractAddress = contractInfo.prototype.getContractAddress()
         this.contractABI = contractInfo.prototype.getContractABI()
@@ -104,10 +105,7 @@ export class blockchainExplorer {
 
     async ratePlus(body: Rate) {
         try {
-            let category: string
-            let rateIndex: string
             let privateKey = '0x' + body.wallet
-
             let wallet = await new ethers.Wallet(privateKey, this.provider);
             let newsContract = await new ethers.Contract(this.contractAddress, this.contractABI, wallet)
             let title = body.title
@@ -118,23 +116,11 @@ export class blockchainExplorer {
                 let newsInCurrentCategory = Number(await newsContract.getNumberOfNewsInType(currentCategoryName))
                 for (let newsIndex = 0; newsIndex < newsInCurrentCategory; newsIndex++) {
                     let result: blockchainList = await newsContract.getNews(currentCategoryName, newsIndex)
-
                     if (result.title === title) {
-                        category = currentCategoryName
-                        rateIndex = newsIndex.toString()
 
-                        
-                        if (typeof web3 !== 'undefined') {
-                            var web3Provider = new web3.providers.HttpProvider("http://127.0.0.1:8545");
-                            web3Provider.getBalance("0x0c9276e4899bF32557fd96AB06a6F85042faC2d0"). then(function(balance) {
-                              var etherString = ethers.utils.formatEther(balance);
-                              console.log("Balance: " + etherString);
-                            });
-                          }
-                        
-                        console.log(`${category}, ${rateIndex}, \"${wallet.address}\"`)
-
-                        return await this.newsContract.plusRating(category, rateIndex, wallet.address)
+                         await newsContract.plusRating(currentCategoryName, newsIndex, wallet.address).then(
+                            this.toastr.success('Новината е оценена.', 'Готово!')
+                        ).catch(err => this.toastr.error(err, 'Грешка!'))
                     }
                 }
             }
@@ -144,16 +130,53 @@ export class blockchainExplorer {
         }
     }
 
-    async rateMinus(category: string, index: string, voter: string) {
+    async rateMinus(body: Rate) {
         try {
-            await this.newsContract.minusRating(category, index, voter)
+            let privateKey = '0x' + body.wallet
+            let wallet = await new ethers.Wallet(privateKey, this.provider);
+            let newsContract = await new ethers.Contract(this.contractAddress, this.contractABI, wallet)
+            let title = body.title
+
+            let categoriesCount = Number(await newsContract.getNumberOfCategories())
+            for (let index = 0; index < categoriesCount; index++) {
+                let currentCategoryName: string = await newsContract.getCategoryName(index)
+                let newsInCurrentCategory = Number(await newsContract.getNumberOfNewsInType(currentCategoryName))
+                for (let newsIndex = 0; newsIndex < newsInCurrentCategory; newsIndex++) {
+                    let result: blockchainList = await newsContract.getNews(currentCategoryName, newsIndex)
+                    if (result.title === title) {
+
+                        return await newsContract.minusRating(currentCategoryName, newsIndex, wallet.address).then(
+                            this.toastr.success('Новината е оценена.', 'Готово!')
+                        ).catch(err => this.toastr.success(err, 'Грешка!'))
+                    }
+                }
+            }
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
+    async getRating(title: string) {
+
+        try {
+            let categoriesCount = Number(await this.newsContract.getNumberOfCategories())
+            for (let index = 0; index < categoriesCount; index++) {
+                let currentCategoryName: string = await this.newsContract.getCategoryName(index)
+                let newsInCurrentCategory = Number(await this.newsContract.getNumberOfNewsInType(currentCategoryName))
+                for (let newsIndex = 0; newsIndex < newsInCurrentCategory; newsIndex++) {
+                    let result = await this.newsContract.getNews(currentCategoryName, newsIndex).then()
+                    if (result.title === title) {
+                        return result.rating
+                    }
+                }
+            }
         }
 
         catch (err) {
             console.log(err)
         }
     }
-
     async checkNews(news: blockchainNews) {
         try {
             let stringToHash = '' + news.title + news.summary + news.category + news.publisher

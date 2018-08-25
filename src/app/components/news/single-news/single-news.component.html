@@ -1,10 +1,9 @@
 <div class="jumbotron" *ngIf="news">
-    <p class="header">Рубрика: <strong>{{news.category}}</strong> </p>
-      <div *ngIf="isLogged">
-      <span class="rates">Оцени новината:</span>
-        <a class="btn btn-primary btn-lg rate"  routerLink="/block/rateplus/{{news.title}}"><strong>+</strong></a>
-        <a class="btn btn-primary btn-lg rate" routerLink="/block/rateminus/{{news.title}}"><strong>-</strong></a>
-      </div>
+    <p class="header">Рубрика: <strong><span class="orange">{{news.category}}</span></strong>       <span *ngIf="auth.isLogged" class="float">
+        <span class="rates">Оцени новината:</span>
+          <a class="btn btn-primary btn-lg rate" routerLink="/block/rateplus/{{news.title}}"><strong>+</strong></a>
+          <a class="btn btn-primary btn-lg rate" routerLink="/block/rateminus/{{news.title}}"><strong>-</strong></a>
+    </span></p>
              
   
     <hr class="my-4">
@@ -17,7 +16,8 @@
     <br>
     <br>
 
-    <p class="lead">{{news.publisher}}</p>
+    <p class="lead">{{news.publisher}}<span *ngIf="rating" class="rating">Рейтинг в блокчейн: <strong><span class="orange">{{rating}}</span></strong></span>
+    </p>
     <hr class="my-4">
     <p>{{news.summary}}</p>
     <br>

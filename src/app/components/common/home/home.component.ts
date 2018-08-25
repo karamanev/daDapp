@@ -27,8 +27,6 @@ export class HomeComponent implements OnInit {
   checkScroll() {
     const scrollPosition = window.pageYOffset
 
-    console.log(scrollPosition)
-
     if (scrollPosition >= 100) {
       this.state[1] = 'show'
     } else {

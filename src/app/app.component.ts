@@ -7,6 +7,8 @@ import { routerTransition } from './router.animations';
   styleUrls: ['./app.component.css'],
   animations: [ routerTransition ],
 })
+
+
 export class AppComponent implements OnInit{
   title = 'app';
 

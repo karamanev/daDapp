@@ -18,6 +18,7 @@ export class SingleNewsComponent implements OnInit {
   showButton: boolean
   showTrue: boolean
   showFake: boolean
+  rating: string
 
   constructor(private newsService: NewsService,
     private route: ActivatedRoute,
@@ -35,6 +36,9 @@ export class SingleNewsComponent implements OnInit {
     this.newsService.getById(this.id)
       .subscribe(data => {
         this.news = data;
+        this.explorer.getRating(this.news.title).then(res => {
+          this.rating = res 
+          })
       })
   }
 

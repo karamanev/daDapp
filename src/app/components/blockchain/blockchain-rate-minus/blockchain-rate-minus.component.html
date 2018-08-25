@@ -1,3 +1,14 @@
-<p>
-  blockchain-rate-minus works!
-</p>
+<div class="row">
+    <div class="col-xs-12">
+      <form #f="ngForm" (ngSubmit)="rate()">
+          <fieldset>
+            <legend>За да дадете отрицателна оценка на новината, <br>въведете своя блокчейн адрес</legend>
+              <div class="form-group">
+                <input type="text" class="form-control" [(ngModel)]="bindingModel.wallet" id="wallet" name="wallet">
+              </div>
+  
+            <button class="btn btn-primary" type="submit">Оцени отрицателно</button>
+          </fieldset>
+      </form>
+    </div>
+  </div>
