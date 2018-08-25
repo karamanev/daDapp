@@ -1,10 +1,19 @@
 <div class="row">
     <div class="col-xs-12">
-      <form #f="ngForm" (ngSubmit)="rate()">
+      <form #rateForm="ngForm" (ngSubmit)="rate()">
           <fieldset>
-            <legend>За да дадете отрицателна оценка на новината, <br>въведете своя блокчейн адрес</legend>
+            <legend>За да дадете отрицателна оценка на новината, <br>въведете своя личен ключ</legend>
               <div class="form-group">
-                <input type="text" class="form-control" [(ngModel)]="bindingModel.wallet" id="wallet" name="wallet">
+                <input required 
+                type="text" 
+                minlength="63"
+                maxlength="66"
+                class="form-control" 
+                [(ngModel)]="bindingModel.wallet" 
+                #wallet="ngModel"
+                id="wallet" 
+                name="wallet">
+                <div class="text-danger" [hidden]="wallet.valid || wallet.pristine">Валидният личен ключ е комбинация от 64 букви и цифри.</div>
               </div>
   
             <button class="btn btn-primary" type="submit">Оцени отрицателно</button>
