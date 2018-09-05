@@ -18,11 +18,11 @@ const routes: Route[] = [
   },
   {
     path: 'news',
-    loadChildren: () => NewsModule
+    loadChildren: './components/news/news.module#NewsModule'
   },
   {
     path: 'block',
-    loadChildren: () => BlockchainModule
+    loadChildren: './components/blockchain/blockchain.module#BlockchainModule'
   },
 
   {
