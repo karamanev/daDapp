@@ -67,7 +67,7 @@ export class AuthService {
           })
         sessionStorage.setItem('name', user.email)
         this.updateUserData(data.user)
-        this.router.navigate(['/recipes/start'])
+        this.router.navigate(['/news/all'])
         this.toastr.success('Успешно влязохте в системата', 'Добре дошли!')
       })
       .catch((err) => {
@@ -98,7 +98,7 @@ export class AuthService {
         })
       sessionStorage.setItem('name', credential.user.email)
       this.updateUserData(credential.user);
-      this.router.navigate(['/recipes/start']);
+      this.router.navigate(['/news/all']);
       this.toastr.success('Успешно влязохте в системата', 'Добре дошли!');
     });
   }
