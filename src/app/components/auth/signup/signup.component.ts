@@ -10,14 +10,14 @@ import { SignModel } from '../../../core/models/sign.model';
 })
 export class SignupComponent implements OnInit {
   model: SignModel
-  constructor(private authService : AuthService) {
+  constructor(public authService : AuthService) {
     this.model = new SignModel('', '')
    }
 
   ngOnInit() {
   }
 
-  register(form : NgForm) {
+  register() {
     this.authService.signUp(this.model);
   }
 

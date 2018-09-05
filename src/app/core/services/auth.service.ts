@@ -21,14 +21,14 @@ export class AuthService {
   user: Observable<User>;
   users: Observable<User[]>;
   token: string;
-  private usersCollection: AngularFirestoreCollection<User>
+  public usersCollection: AngularFirestoreCollection<User>
 
   constructor(
-    private toastr: ToastrService,
-    private router: Router,
-    private afAuth: AngularFireAuth,
-    private afs: AngularFirestore,
-    private db: AngularFireDatabase) {
+    public toastr: ToastrService,
+    public router: Router,
+    public afAuth: AngularFireAuth,
+    public afs: AngularFirestore,
+    public db: AngularFireDatabase) {
 
     this.user = this.afAuth.authState.pipe(switchMap(user => {
       if (user) {
@@ -103,7 +103,7 @@ export class AuthService {
     });
   }
 
-  private updateUserData(user) {
+  updateUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
 
     const data: User = {

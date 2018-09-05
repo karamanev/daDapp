@@ -9,7 +9,7 @@ import { SignModel } from '../../../core/models/sign.model'
 })
 export class SigninComponent implements OnInit {
   model: SignModel
-  constructor(private authService: AuthService) {
+  constructor(public authService: AuthService) {
     this.model = new SignModel('', '')
   }
 
