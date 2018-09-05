@@ -117,7 +117,6 @@ export class blockchainExplorer {
                 for (let newsIndex = 0; newsIndex < newsInCurrentCategory; newsIndex++) {
                     let result: blockchainList = await newsContract.getNews(currentCategoryName, newsIndex)
                     if (result.title === title) {
-
                          await newsContract.plusRating(currentCategoryName, newsIndex, wallet.address).then(
                             this.toastr.success('Новината е оценена.', 'Готово!')
                         ).catch(err => this.toastr.error(err, 'Грешка!'))
