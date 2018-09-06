@@ -3,8 +3,6 @@ import { Route, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/common/home/home.component'
 import { SigninComponent } from './components/auth/signin/signin.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
-import { NewsModule } from './components/news/news.module';
-import { BlockchainModule } from './components/blockchain/blockchain.module'
 
 const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

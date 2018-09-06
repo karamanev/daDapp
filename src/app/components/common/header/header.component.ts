@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(public authService : AuthService,
   private router: Router) { }
+  navbarOpen = false;
 
   ngOnInit() {
   }
@@ -20,6 +21,9 @@ export class HeaderComponent implements OnInit {
   }
   search(){
     this.router.navigate(['/news/search']);
+  }
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
   }
 
 }

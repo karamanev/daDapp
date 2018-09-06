@@ -48,3 +48,6 @@
     color: #df691a;
 }
 
+.img-responsive{
+    max-width: 735px;
+}

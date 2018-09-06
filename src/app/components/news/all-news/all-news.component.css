@@ -9,3 +9,8 @@
 .size{
     height: 60px;
 }
+
+.card{
+    border-left-width: 0px;
+    border-right-width: 0px;
+}
