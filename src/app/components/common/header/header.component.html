@@ -9,32 +9,32 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarColor02" [ngClass]="{ 'show': navbarOpen }">
+        <div class="collapse navbar-collapse" id="navbarColor02" [ngClass]="{'show': navbarOpen}">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" routerLink="/" routerLinkActive="active">Начало <span class="sr-only">(current)</span></a>
+              <a class="nav-link" routerLink="/" routerLinkActive="active" (click)="toggleNavbar()">Начало <span class="sr-only">(current)</span></a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" routerLink="/news/all" routerLinkActive="active">Всички</a>
+              <a class="nav-link" routerLink="/news/all" routerLinkActive="active" (click)="toggleNavbar()">Всички</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" routerLink="/block/all" routerLinkActive="active">Блокчейн</a>
+              <a class="nav-link" routerLink="/block/all" routerLinkActive="active" (click)="toggleNavbar()">Блокчейн</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" routerLink="/news/categories" routerLinkActive="active">Категории</a>
+              <a class="nav-link" routerLink="/news/categories" routerLinkActive="active" (click)="toggleNavbar()">Категории</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/auth/signup" *ngIf="!authService.isAuthenticated()" routerLinkActive="active">Регистрация</a>
+              <a class="nav-link" routerLink="/auth/signup" *ngIf="!authService.isAuthenticated()" routerLinkActive="active" (click)="toggleNavbar()">Регистрация</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/auth/signin" *ngIf="!authService.isAuthenticated()" routerLinkActive="active">Вход</a>
+              <a class="nav-link" routerLink="/auth/signin" *ngIf="!authService.isAuthenticated()" routerLinkActive="active" (click)="toggleNavbar()">Вход</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" routerLink="/news/create" *ngIf="authService.isAuthenticated()" routerLinkActive="active"><strong>Публикувай новина!</strong></a>
+              <a class="nav-link" routerLink="/news/create" *ngIf="authService.isAuthenticated()" routerLinkActive="active" (click)="toggleNavbar()"><strong>Публикувай новина!</strong></a>
             </li>
 
             <li class="nav-item">
@@ -42,11 +42,11 @@
             </li>
 
             <li class="nav-item" style="cursor: pointer;">
-              <a class="nav-link" (click)="logout()" *ngIf="authService.isAuthenticated()" routerLinkActive="active">Изход</a>
+              <a class="nav-link" (click)="logout()" *ngIf="authService.isAuthenticated()" routerLinkActive="active"(click)="toggleNavbar()">Изход</a>
             </li>
           </ul>
           <form (ngSubmit)="search()" class="form-inline my-2 my-lg-0">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit" routerLinkActive="active">Търси новина</button>
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit" routerLinkActive="active" (click)="toggleNavbar()">Търси новина</button>
           </form>
         </div>
       </div>
